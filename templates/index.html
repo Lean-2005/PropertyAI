@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropertyAI | WildCatter MVP</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span>⌂</span> Property<span>AI</span></div>
+  <div class="tag">AI-first Mumbai property discovery</div>
+  <div class="role">
+    <select id="role"><option value="buyer">Buyer</option><option value="broker">Broker</option><option value="developer">Developer</option></select>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">NATIVE AI PROPERTY SEARCH</div>
+    <h1>Tell us what you want.<br><span>AI finds the projects.</span></h1>
+    <p>Search Mumbai properties naturally by voice or text. No forms. No filter maze.</p>
+    <div class="searchbox">
+      <textarea id="query" rows="2" placeholder='Try: "Show me 2 bedroom residential projects below Rs 8 crore in Lokhandwala completed by June 2027."'></textarea>
+      <button class="mic" id="mic" title="Voice search">🎙</button>
+      <button class="search" id="search">Search →</button>
+    </div>
+    <div class="chips">
+      <button onclick="demo('Show me residential 2 bedroom projects below Rs 8 crore in Lokhandwala completed by June 2027')">2 BHK · Lokhandwala · < ₹8 Cr</button>
+      <button onclick="demo('Show me 2 BHK projects below Rs 7 crore in Andheri West')">2 BHK · Andheri West</button>
+    </div>
+  </div>
+  <div class="ai-card">
+    <div class="orb">✦</div>
+    <h3>AI Search Agent</h3>
+    <p>Understands budget, BHK, location and completion dates from one sentence.</p>
+    <div class="agent-step"><b>01</b> Understand request</div>
+    <div class="agent-step"><b>02</b> Search property data</div>
+    <div class="agent-step"><b>03</b> Rank + map results</div>
+  </div>
+</section>
+
+<section class="results-section">
+  <div class="toolbar">
+    <div><h2 id="resultTitle">Property discovery</h2><p id="resultSub">Your AI search results will appear here.</p></div>
+    <button class="dashboard-btn" onclick="loadDashboard()">Dashboard</button>
+  </div>
+  <div class="content-grid">
+    <div class="results" id="results">
+      <div class="empty"><div>⌖</div><h3>Start with a sentence</h3><p>Your matching projects will appear here.</p></div>
+    </div>
+    <div id="map"></div>
+  </div>
+</section>
+
+<section class="dashboard" id="dashboard">
+  <div class="toolbar"><div><h2>Activity dashboard</h2><p>Searches and enquiries captured by the central data store.</p></div><button onclick="document.getElementById('dashboard').style.display='none'">Close</button></div>
+  <div class="dash-grid"><div><h3>Recent searches</h3><div id="searches"></div></div><div><h3>Enquiries</h3><div id="enquiries"></div></div></div>
+</section>
+</main>
+
+<div class="modal" id="modal">
+ <div class="modal-box">
+  <button class="close" onclick="closeModal()">×</button>
+  <h2>Ask the developer to contact you</h2>
+  <p id="modalProject"></p>
+  <input id="name" placeholder="Your name">
+  <input id="phone" placeholder="Mobile number">
+  <input id="email" placeholder="Email">
+  <button class="send" onclick="sendEnquiry()">Send contact request</button>
+  <div id="modalMsg"></div>
+ </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
